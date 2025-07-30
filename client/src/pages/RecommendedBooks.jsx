@@ -13,7 +13,7 @@ const RecommendedBooks = () => {
   useEffect(() => {
     const fetchRecommendedBooks = async () => {
       try {
-        const res = await fetch("http://localhost:5050/api/books/recommended");
+        const res = await fetch("https://virlib-vz0j.onrender.com/api/books/recommended");
         const data = await res.json();
         setBooks(data || []);
       } catch (error) {
