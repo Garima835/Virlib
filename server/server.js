@@ -12,9 +12,21 @@ import commentsRoutes from "./routes/comments.js";
 
 dotenv.config();
 const app = express();
+const allowedOrigins = [
+  "https://virlib-frontend.onrender.com",
+  "https://virlib-frontend-4ex1.onrender.com"
+];
+
 app.use(cors({
-  origin: "https://virlib-frontend.onrender.com",
-  credentials: true,
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // Allow Postman / server-to-server
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"), false);
+    }
+  },
+  credentials: true
 }));
 
 // ⬇️ Increase payload size limit to 50MB
@@ -44,4 +56,5 @@ app.use("/api/comments", commentsRoutes);
 
 const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
