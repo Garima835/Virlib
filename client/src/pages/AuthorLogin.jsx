@@ -16,7 +16,7 @@ const AuthorLogin = ({ setUser }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await fetch("https://virlib-vz0j.onrender.com/api/auth/login/author", {
+    const res = await fetch("https://virlib-vz0j.onrender.com/auth/login/author", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -147,3 +147,4 @@ const AuthorLogin = ({ setUser }) => {
 };
 
 export default AuthorLogin;
+
